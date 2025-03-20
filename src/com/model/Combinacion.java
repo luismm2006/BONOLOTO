@@ -11,7 +11,7 @@ public class Combinacion {
 	    private List<Integer> numeros;
 	    private List<Integer> estrellas;
 
-	    Random random = new Random();
+	   
 	    
 	    
 	    public Combinacion(int num1 ,int num2,int num3,int num4,int num5,int estrella1,int estrella2) {
@@ -19,8 +19,19 @@ public class Combinacion {
 	    }
 
 	    public Combinacion(Integer[] numeros,Integer[] estrellas) {
-	        this.numeros = new ArrayList<Integer>(Arrays.asList(numeros));
-	        this.estrellas = new ArrayList<Integer>(Arrays.asList(estrellas));
+	    	 Random random = new Random();
+	    	 this.numeros = new ArrayList<Integer>();
+		     this.estrellas = new ArrayList<Integer>();
+	    	 
+	    	for(int i = 0 ; i < TOTAL_NUMEROS; i++) {
+	    		int numRandom = random.nextInt(MAXIMO_NUMEROS)+1;
+	    		numeros[i] += numRandom;
+	    	}
+	    	for(int i = 0 ; i < TOTAL_ESTRELLAS; i++) {
+	    		int numRandomEstre = random.nextInt(MAXIMO_ESTRELLAS)+1;
+	    		numeros[i] += numRandomEstre;
+	    	}
+	        
 	    }
 	    	    
 	    public List<Integer> getNumeros() {
@@ -67,14 +78,14 @@ public class Combinacion {
 	    	String numerosCadena = "";
 	    	String estrellasCadena = "";
 	        for (int i = 0; i < numeros.size(); i++) {
-				if (numeros.get(i) == numeros.getLast()) {
+				if (i == numeros.size() - 1) {
 					numerosCadena += numeros.get(i);
 				}else {
 					numerosCadena += numeros.get(i) + "-";
 				}
 			}
 	        for (int i = 0; i < estrellas.size(); i++) {
-				if (estrellas.get(i) == estrellas.getLast()) {
+				if (i == estrellas.size() - 1) {
 					estrellasCadena += estrellas.get(i);
 				}else {
 					estrellasCadena += estrellas.get(i) + "-";
